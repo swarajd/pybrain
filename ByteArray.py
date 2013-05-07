@@ -4,14 +4,18 @@ class byteArray:
 		self.pos = 0
 	def advance(self):
 		self.pos += 1
-	def reverse(self):
+	def devance(self):
 		self.pos -= 1
-	def add(self):
+	def increment(self):
 		self.grid[self.pos] += 1
-	def subtract(self):
+	def decrement(self):
 		self.grid[self.pos] -= 1
 	def jump(self,index):
 		self.pos = index
+	def set(self,ch):
+		self.grid[self.pos] = ord(ch)
+	def get(self):
+		return self.grid[self.pos]
 	def getVal(self,index):
 		return self.grid[index]
 		

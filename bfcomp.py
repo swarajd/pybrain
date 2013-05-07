@@ -1,11 +1,7 @@
 from ByteArray import byteArray
 
-arr = [0]
-index = 0
-
 def runCode(prgm):
-	global arr
-	global index
+	b = byteArray()
 	lnum = 0
 	rnum = 0
 	starts = []
@@ -25,54 +21,38 @@ def runCode(prgm):
 	i = 0
 	while i < len(prgm):
 		if prgm[i] == '>':
-			if len(arr) - 1 < index + 1:
-				arr.append(0)
-				index += 1
+			if b.pos >= 29999:
+				continue
 			else:
-				index += 1
-			#print(index)
+				b.advance()
 		elif prgm[i] == '<':
-			if index == 0:
-				index = 0
+			if b.pos <= 0:
+				b.pos = 0
 			else:
-				index -= 1
-			#print(index)
+				b.devance()
 		elif prgm[i] == '+':
-			arr[index] += 1
-			#print(index,arr[index])
+			b.increment()
 		elif prgm[i] == '-':
-			arr[index] -= 1
-			#print(index,arr[index])
+			b.decrement()
 		elif prgm[i] == '.':
-			print(chr(arr[index]))
+			print(chr(b.get()))
 		elif prgm[i] == ',':
 			ch = input()
-			arr[index] = ord(ch[0])
+			b.set(ch[0])
 		elif prgm[i] == '[':
 			starts.append(i)
 		elif prgm[i] == ']':
-			#print('is this parsed?')
 			if len(starts) != 0:
 				ends.append(i)
 				start = starts.pop()
 				end = i
 				loops[start] = end
 				loops[end] = start
-			if ((i in loops.values()) and (i > loops[i]) and arr[index] > 0):
+			if ((i in loops.values()) and (i > loops[i]) and b.get() > 0):
 				i = loops[i]
-				#print("this is parsed",i)
 		else:
 			pass
 		i += 1
-	#print(loops)
 			
-#runCode(">+++++++++[<++++++++>-]<.>+++++++[<++++>-]<+.+++++++..+++.[-]>++++++++[<++++>-] <.>+++++++++++[<++++++++>-]<-.--------.+++.------.--------.[-]>++++++++[<++++>- ]<+.[-]++++++++++.")
+runCode(">+++++++++[<++++++++>-]<.>+++++++[<++++>-]<+.+++++++..+++.[-]>++++++++[<++++>-] <.>+++++++++++[<++++++++>-]<-.--------.+++.------.--------.[-]>++++++++[<++++>- ]<+.[-]++++++++++.")
 
-b = byteArray()
-b.advance()
-b.advance()
-b.reverse()
-b.add()
-b.jump(56)
-b.add()
-print(b.getVal(56))	
