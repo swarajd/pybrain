@@ -26,7 +26,7 @@ def runCode(prgm):
 	while i < len(prgm):
 		if prgm[i] == '>':
 			if b.pos >= 29999:
-				continue
+				b.jump(0)
 			else:
 				b.advance()
 		elif prgm[i] == '<':
