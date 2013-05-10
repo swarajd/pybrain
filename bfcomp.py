@@ -1,23 +1,27 @@
 from ByteArray import byteArray
 
-def runCode(prgm):
-	b = byteArray()
+def parse(prgm):
+	valChars = []
 	lnum = 0
 	rnum = 0
-	starts = []
-	ends = []
-	loops = {}
 	for i in prgm:
-		if i not in ['+','-','.','>','<','[',']',' ']:
-			print("this doesn't compile")
-			return
-		if i == '[':
-			lnum += 1
-		elif i == ']':
-			rnum += 1
+		if i in ['+','-','.','>','<','[',']',' ']:
+			valChars += i
+			if i == '[':
+				lnum += 1
+			elif i == ']':
+				rnum += 1
 	if lnum != rnum:
 		print("this doesn't compile")
 		return
+	return ''.join(valChars)
+
+def runCode(prgm):
+	prgm = parse(prgm)
+	b = byteArray()
+	starts = []
+	ends = []
+	loops = {}
 	i = 0
 	while i < len(prgm):
 		if prgm[i] == '>':
