@@ -1,0 +1,1 @@
+{"name":"Pybrain","tagline":"brainf*ck compiler in python","body":"### This is pybrain\r\nThis is a brainfuck compiler written in python. \r\n\r\n```\r\n$ git clone git@github.com:swarage/pybrain.git\r\n$ cd pybrain\r\n$ python bfcomp.py\r\n```\r\n","google":"","note":"Don't delete this file! It's used internally to help with page regeneration."}
